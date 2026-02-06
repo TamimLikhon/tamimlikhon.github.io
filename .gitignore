@@ -1,0 +1,23 @@
+# Build outputs
+build/
+**/build/
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env
+.env
+.env.*.local
+
+# Common tooling caches/output
+dist/
+coverage/
+.cache/
+.parcel-cache/
+.vite/

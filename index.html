@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamim Hasan Likhon | Backend Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Premium Home Page Styles */
+        .hero-section {
+            min-height: 100vh;
+            padding-top: 6rem;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated gradient background */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(80, 250, 123, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(189, 147, 249, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(139, 233, 253, 0.08) 0%, transparent 60%);
+            animation: gradientRotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientRotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(80, 250, 123, 0.6);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) {
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            left: 20%;
+            top: 80%;
+            animation-delay: 2s;
+            background: rgba(189, 147, 249, 0.6);
+        }
+
+        .particle:nth-child(3) {
+            left: 60%;
+            top: 10%;
+            animation-delay: 4s;
+            background: rgba(139, 233, 253, 0.6);
+        }
+
+        .particle:nth-child(4) {
+            left: 80%;
+            top: 60%;
+            animation-delay: 6s;
+        }
+
+        .particle:nth-child(5) {
+            left: 90%;
+            top: 30%;
+            animation-delay: 8s;
+            background: rgba(245, 200, 107, 0.6);
+        }
+
+        .particle:nth-child(6) {
+            left: 30%;
+            top: 50%;
+            animation-delay: 3s;
+            background: rgba(255, 121, 198, 0.6);
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateY(-100px) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* Main layout */
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Profile card with glassmorphism */
+        .profile-card {
+            position: relative;
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(80, 250, 123, 0.2);
+            border-radius: 24px;
+            text-align: center;
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px) rotateX(2deg);
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, rgba(80, 250, 123, 0.4), transparent 50%, rgba(189, 147, 249, 0.4));
+            border-radius: 26px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-card:hover::before {
+            opacity: 1;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .profile-img-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(135deg, #50fa7b, #8be9fd, #bd93f9, #ff79c6);
+            border-radius: 50%;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .profile-img-wrapper img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #0f0f0f;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(80, 250, 123, 0.15);
+            border: 1px solid rgba(80, 250, 123, 0.4);
+            border-radius: 999px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.8rem;
+            color: #50fa7b;
+            margin-bottom: 1rem;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #50fa7b;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .profile-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #f8f8f2, #8be9fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .profile-title {
+            color: #bd93f9;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-socials {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #a0aec0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: rgba(80, 250, 123, 0.2);
+            border-color: #50fa7b;
+            color: #50fa7b;
+            transform: translateY(-3px);
+        }
+
+        /* Terminal Section */
+        .terminal-section {
+            position: relative;
+        }
+
+        .premium-terminal {
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(80, 250, 123, 0.2);
+            box-shadow:
+                0 0 80px rgba(80, 250, 123, 0.1),
+                0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1rem;
+            background: linear-gradient(180deg, #3d3d3d, #2d2d2d);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+        }
+
+        .terminal-header .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-header .dot-red {
+            background: linear-gradient(180deg, #ff5f57, #e0443e);
+        }
+
+        .terminal-header .dot-yellow {
+            background: linear-gradient(180deg, #febc2e, #dea123);
+        }
+
+        .terminal-header .dot-green {
+            background: linear-gradient(180deg, #28c840, #1aab29);
+        }
+
+        .terminal-header-title {
+            flex: 1;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .terminal-content {
+            height: 380px;
+            padding: 1.5rem;
+            font-family: 'SF Mono', 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.8rem;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: lineAppear 0.4s forwards;
+        }
+
+        @keyframes lineAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .prompt-user {
+            color: #50fa7b;
+            font-weight: 600;
+        }
+
+        .prompt-sep {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .prompt-host {
+            color: #bd93f9;
+            font-weight: 600;
+        }
+
+        .prompt-colon {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .prompt-path {
+            color: #8be9fd;
+        }
+
+        .prompt-dollar {
+            color: rgba(255, 255, 255, 0.6);
+            margin-right: 0.5rem;
+        }
+
+        .output-text {
+            color: #f8f8f2;
+        }
+
+        .output-highlight {
+            color: #f5c86b;
+        }
+
+        .output-success {
+            color: #50fa7b;
+        }
+
+        .output-info {
+            color: #8be9fd;
+        }
+
+        .output-dim {
+            color: #6272a4;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: #50fa7b;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* CTA Buttons */
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.9rem 1.8rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-btn.primary {
+            background: linear-gradient(135deg, #50fa7b, #3ad66e);
+            color: #0a0f16;
+            border: none;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(80, 250, 123, 0.3);
+        }
+
+        .cta-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(80, 250, 123, 0.4);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: #8be9fd;
+            border: 1px solid rgba(139, 233, 253, 0.4);
+        }
+
+        .cta-btn.secondary:hover {
+            background: rgba(139, 233, 253, 0.1);
+            border-color: #8be9fd;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-layout {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .profile-card {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .terminal-content {
+                height: 320px;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="intro-active">
+    <div class="intro-screen" id="intro-screen">
+        <div class="mac-terminal">
+            <div class="mac-terminal-header">
+                <div class="mac-dots">
+                    <span class="mac-dot mac-dot-red"></span>
+                    <span class="mac-dot mac-dot-yellow"></span>
+                    <span class="mac-dot mac-dot-green"></span>
+                </div>
+                <span class="mac-terminal-title">Terminal — zsh</span>
+                <div class="mac-header-spacer"></div>
+            </div>
+            <div class="mac-terminal-body">
+                <div class="terminal-output">
+                    <p class="terminal-line-intro"><span class="prompt-user">tamim@portfolio</span><span
+                            class="prompt-separator">:</span><span class="prompt-path">~</span><span
+                            class="prompt-symbol">$</span> <span id="typing-text" class="typing-text"></span><span
+                            class="cursor">▋</span></p>
+                </div>
+                <button class="mac-install-btn" id="enter-btn">
+                    <i class="fas fa-terminal"></i>
+                    <span>Run Command</span>
+                </button>
+                <p class="mac-hint">Press button or hit <kbd>Enter</kbd> to continue</p>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">&lt;Tamim Likhon/&gt;</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="about.html" class="nav-link">About</a></li>
+                    <li><a href="skills.html" class="nav-link">Skills</a></li>
+                    <li><a href="projects.html" class="nav-link">Projects</a></li>
+                    <li><a href="achievements.html" class="nav-link">Achievements</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <!-- Floating particles -->
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+
+            <div class="hero-layout">
+                <!-- Profile Card -->
+                <div class="profile-card">
+                    <div class="status-badge">Available for hire</div>
+                    <div class="profile-img-wrapper">
+                        <img src="public/tamimlikhon.png" alt="Tamim Hasan Likhon">
+                    </div>
+                    <h1 class="profile-name">Tamim Hasan Likhon</h1>
+                    <p class="profile-title">Backend Developer & AI Enthusiast</p>
+                    <div class="profile-socials">
+                        <a href="https://github.com/TamimLikhon" target="_blank" class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:tamimlikhon456@gmail.com" class="social-icon">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+8801725686229" class="social-icon">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Terminal Section -->
+                <div class="terminal-section">
+                    <div class="premium-terminal">
+                        <div class="terminal-header">
+                            <span class="dot dot-red"></span>
+                            <span class="dot dot-yellow"></span>
+                            <span class="dot dot-green"></span>
+                            <span class="terminal-header-title">tamim@portfolio: ~</span>
+                        </div>
+                        <div class="terminal-content" id="terminal-content">
+                            <!-- Content will be populated by JS -->
+                        </div>
+                    </div>
+                    <div class="hero-cta">
+                        <a href="projects.html" class="cta-btn primary">
+                            <i class="fas fa-folder-open"></i>
+                            View Projects
+                        </a>
+                        <a href="contact.html" class="cta-btn secondary">
+                            <i class="fas fa-terminal"></i>
+                            ./contact_info.sh
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="section home-intro-text">
+            <div class="container intro-text-content">
+                <div class="intro-text-wrapper">
+                    <p class="intro-label">$ cat about.txt</p>
+                    <h2 class="intro-heading">Building backend systems that scale.</h2>
+                    <p class="intro-description">
+                        I'm a backend developer passionate about creating robust APIs, designing efficient database
+                        architectures,
+                        and solving complex problems with clean, maintainable code. Currently pursuing my BSc in
+                        Computer Science
+                        and Engineering at the University of Asia Pacific, I combine academic knowledge with hands-on
+                        experience
+                        in modern web technologies.
+                    </p>
+                    <p class="intro-description">
+                        My work focuses on Node.js, Python, and database systems like PostgreSQL and MongoDB. I enjoy
+                        the challenge
+                        of optimizing performance, implementing secure authentication flows, and building systems that
+                        developers
+                        love to work with.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section home-highlights">
+            <div class="container highlights-grid">
+                <div class="highlight-card">
+                    <p class="highlight-title">System Mindset</p>
+                    <p class="highlight-text">Designing scalable APIs, thoughtful data models, and clean integrations.
+                    </p>
+                </div>
+                <div class="highlight-card">
+                    <p class="highlight-title">Product Focused</p>
+                    <p class="highlight-text">Shipping features that feel fast, reliable, and easy to maintain.</p>
+                </div>
+                <div class="highlight-card">
+                    <p class="highlight-title">Always Learning</p>
+                    <p class="highlight-text">Exploring AI, system design, and modern backend tooling.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section home-cta">
+            <div class="container cta-card">
+                <div>
+                    <h2 class="section-title">Explore My Work</h2>
+                    <p class="cta-text">See projects, technical skills, and the story behind my journey.</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="projects.html" class="btn primary-btn">Projects</a>
+                    <a href="about.html" class="btn secondary-btn">About Me</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Tamim Hasan Likhon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intro screen logic
+        const introScreen = document.getElementById('intro-screen');
+        const enterBtn = document.getElementById('enter-btn');
+        const typingText = document.getElementById('typing-text');
+        const command = 'pip install Tamimprofile';
+        let charIndex = 0;
+
+        function typeCommand() {
+            if (charIndex < command.length) {
+                typingText.textContent += command.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeCommand, 50 + Math.random() * 50);
+            }
+        }
+
+        setTimeout(() => typeCommand(), 500);
+
+        function enterPortfolio() {
+            if (introScreen) {
+                document.querySelector('.mac-terminal').classList.add('executing');
+                const output = document.querySelector('.terminal-output');
+                const installMsg = document.createElement('p');
+                installMsg.className = 'install-progress';
+                installMsg.innerHTML = '<span class="success-icon">✓</span> Installing Tamimprofile... Done!';
+                output.appendChild(installMsg);
+
+                setTimeout(() => {
+                    introScreen.classList.add('is-hidden');
+                    document.body.classList.remove('intro-active');
+                    startTerminalAnimation();
+                }, 800);
+            }
+        }
+
+        enterBtn?.addEventListener('click', enterPortfolio);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !introScreen.classList.contains('is-hidden')) {
+                enterPortfolio();
+            }
+        });
+
+        // Terminal animation with REAL typing effect
+        async function typeWriter(element, text, speed = 50) {
+            for (let i = 0; i < text.length; i++) {
+                element.innerHTML += text.charAt(i);
+                await new Promise(r => setTimeout(r, speed + Math.random() * 30));
+            }
+        }
+
+        async function startTerminalAnimation() {
+            const terminal = document.getElementById('terminal-content');
+
+            // Helper to create a line
+            function createLine() {
+                const div = document.createElement('div');
+                div.className = 'terminal-line';
+                terminal.appendChild(div);
+                return div;
+            }
+
+            // Helper to add prompt
+            function addPrompt(line) {
+                line.innerHTML = '<span class="prompt-user">tamim</span><span class="prompt-sep">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span> ';
+            }
+
+            await new Promise(r => setTimeout(r, 300));
+
+            // Line 1: whoami
+            const line1 = createLine();
+            addPrompt(line1);
+            const cmd1 = document.createElement('span');
+            cmd1.className = 'typing-cmd';
+            line1.appendChild(cmd1);
+            await typeWriter(cmd1, 'whoami');
+
+            await new Promise(r => setTimeout(r, 200));
+
+            // Output 1
+            const output1 = createLine();
+            output1.innerHTML = '<span class="output-highlight">Tamim Hasan Likhon</span>';
+
+            await new Promise(r => setTimeout(r, 400));
+
+            // Line 2: echo $ROLE
+            const line2 = createLine();
+            addPrompt(line2);
+            const cmd2 = document.createElement('span');
+            cmd2.className = 'typing-cmd';
+            line2.appendChild(cmd2);
+            await typeWriter(cmd2, 'echo $ROLE');
+
+            await new Promise(r => setTimeout(r, 200));
+
+            // Output 2
+            const output2 = createLine();
+            output2.innerHTML = '<span class="output-info">Backend Developer & AI Enthusiast</span>';
+
+            await new Promise(r => setTimeout(r, 400));
+
+            // Final prompt with cursor
+            const finalLine = createLine();
+            finalLine.innerHTML = '<span class="prompt-user">tamim</span><span class="prompt-sep">@</span><span class="prompt-host">portfolio</span><span class="prompt-colon">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span> <span class="cursor"></span>';
+        }
+    </script>
+    <script src="animations.js"></script>
+</body>
+
+</html>
